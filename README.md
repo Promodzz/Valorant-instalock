@@ -22,7 +22,7 @@ So, if you want to configure it edit the script like this:
 
 See the function for Jett for example.
 
-![image](https://user-images.githubusercontent.com/57575090/114630353-b0dc2680-9cba-11eb-9c3b-72d40b960cf5.png)
+![image](https://user-images.githubusercontent.com/57575090/114631457-e71aa580-9cbc-11eb-92f8-ddca1fc631da.png)
 
 These coordinates and colors can be taken as follows:
 
@@ -41,3 +41,5 @@ Put this coords in the ColorGet.au3 inside the Program folder and execute:
 ![image](https://user-images.githubusercontent.com/57575090/114631072-357b7480-9cbc-11eb-9b52-051c75bf31aa.png)
 
 Let the program executing while you stay in champ selection for capture the color and replace him in the function of the champ.
+
+Once everything is configured, enjoy!

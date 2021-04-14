@@ -14,7 +14,7 @@ If you think us a virus or simply you want to edit the script go to Program carp
 If the program don't work for you, probably we dont have the same screen resolution.
 I have 1920x1080.
 
-So, if you want to configure it edit the script like this:
+So, if you want to configure it, edit the script like this:
 
 ![image](https://user-images.githubusercontent.com/57575090/114625720-fbf23b80-9cb2-11eb-9fc1-eca5c795642b.png)
 

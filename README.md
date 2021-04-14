@@ -4,7 +4,7 @@ Simply execute the .exe in Program.
 ![image](https://user-images.githubusercontent.com/57575090/114625507-a453d000-9cb2-11eb-9421-3dbb9402d8f0.png)
 ![image](https://user-images.githubusercontent.com/57575090/114625557-b6ce0980-9cb2-11eb-9a15-f458f9ecb728.png)
 
-If you think us a virus or simply you want to edit the script go to Program carpet and with Autoit downloaded (https://www.autoitscript.com/site/), right click and "edit script" or go to the AutoIt carpet and run the compiler.
+If you think is a virus or simply you want to edit the script go to the Program carpet and with Autoit downloaded (https://www.autoitscript.com/site/), right click and "edit script" or go to the AutoIt carpet and run the compiler.
 
 ![image](https://user-images.githubusercontent.com/57575090/114629199-72456c80-9cb8-11eb-963a-4122062f1af1.png)
 

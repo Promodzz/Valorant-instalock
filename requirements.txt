@@ -1,0 +1,4 @@
+Pillow==9.2.0
+PyAutoGUI==0.9.52
+pynput==1.7.4
+pystray==0.19.1

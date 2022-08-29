@@ -14,5 +14,6 @@
     "Instructions": "Instructions",
     "InstructionsText": "Click on the selected agents: ",
     "DataLack": "For the program to work you must have configured the confirmation button and at least one agent.",
-    "Warning": "Warning"
+    "Warning": "Warning",
+    "Reset": "Reset"
 }

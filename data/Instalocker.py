@@ -1,7 +1,7 @@
 from pystray import Menu, Icon, MenuItem as Item
-from PIL import Image
+from PIL import Image, ImageGrab
 from pynput import mouse
-import pyautogui, json, threading, time
+import pyautogui, json, threading, time, math
 
 class ProgamError(Exception):
     pass
@@ -68,11 +68,8 @@ class Program:
             self.all_agents = j_file["ALL"]
             self.agents_data = j_file
 
-            # First agent for default
-            if len(self.agents) > 0 and self.agentName == None: 
-                if self.agents[0] == "CONFIRMATION_BUTTON" and len(self.agents) > 1:
-                    self.agentName = self.agents[1] 
-                else: pass
+        try: self.agentName = self.agents_data["DEFAULT"]
+        except: pass
 
 
     def changeIcon(self) -> None:
@@ -88,6 +85,12 @@ class Program:
         self.agentName = agent
         self.icon.notify(f'{self.data["Notification"]}: {agent}')
 
+        with open(f'data/agents.json', 'r', encoding="utf-8") as file:
+            j_file = json.load(file)
+            j_file["DEFAULT"] = agent
+
+        with open(f'data/agents.json', 'w', encoding="utf-8") as file:
+            file.write(json.dumps(j_file, indent=4))
 
     def setAgent(self, agent: str) -> None:
         """Locate and save the selected agent (pixels and colors)"""
@@ -111,12 +114,34 @@ class Program:
         while self.coords == None:
             time.sleep(0.1)
 
-        pixel_color = pyautogui.pixel(*self.coords)
-        self.coords.append(pixel_color)
+        if agent == "CONFIRMATION_BUTTON":
+            radio = 10
+            original = [*self.coords]
+
+            radio_points = [x for x in range(-radio, radio + 1)]
+            coord_list = []
+
+            for x in radio_points:
+                temp_coords = [*self.coords]
+
+                pixel_color = ImageGrab.grab().load()[temp_coords[0], temp_coords[1]]
+                temp_coords.append(pixel_color)
+                coord_list.append(temp_coords)
+
+                self.coords[0] = original[0] + x
+        else:
+            pixel_color = ImageGrab.grab().load()[self.coords[0], self.coords[1]]
+            self.coords.append(pixel_color)
 
         with open(f'data/agents.json', 'r', encoding="utf-8") as file:
             j_file = json.load(file)
-            j_file[agent] = self.coords
+            
+            if agent != "CONFIRMATION_BUTTON":
+                j_file["DEFAULT"] = agent
+                self.agentName = agent
+
+            if agent == "CONFIRMATION_BUTTON": j_file[agent] = [self.coords, coord_list]
+            else: j_file[agent] = self.coords
 
         with open(f'data/agents.json', 'w', encoding="utf-8") as file:
             file.write(json.dumps(j_file, indent=4))
@@ -125,6 +150,23 @@ class Program:
         while pressed != 'OK': time.sleep(0.2)
         self.coords = None
         self.getAgents()
+
+
+    def clear(self):
+        with open(f'data/agents.json', 'r', encoding="utf-8") as file:
+            j_file = json.load(file)
+            temp = [x for x in j_file]
+            
+            for x in temp:
+                if x == "ALL": continue
+                del j_file[x]
+
+        with open(f'data/agents.json', 'w', encoding="utf-8") as file:
+            file.write(json.dumps(j_file, indent=4))
+
+        self.agentName = None
+        self.agents = []
+        self.agents_data = j_file
 
 
     def createItem(self, agent: str, saved: bool =False) -> object:
@@ -143,41 +185,72 @@ class Program:
             return item
 
 
+    def relative_error(self, list1: list, list2: list, tolerancy: int =0) -> bool:
+        final = False
+
+        if len(list1) == len(list2):
+            for x in range(len(list1)):
+                # print(list1[x], list2[x])
+                if math.isclose(list1[x], list2[x], abs_tol=tolerancy):
+                    final = True
+                else:
+                    final = False
+                    break
+        else: print("[·] Lists dont have the same number of items")
+        
+        return final
+
+
     def p_thread(self) -> None:
         """Starts the thread that is in charge of choosing the agent"""
 
         first = True
         
         while self.thread_activity:
+            if not self.agentName and self.agents: self.agentName = self.agents[0]
+            if not self.agentName:
+                time.sleep(1)
+                continue
+
+            found = 0
+
             if self.activity and "CONFIRMATION_BUTTON" in self.agents and len(self.agents) > 1:
-                coords = self.agents_data[self.agentName][0], self.agents_data[self.agentName][1]
-                color = self.agents_data[self.agentName][2]
-
-                print(f'Searching: {self.agentName} - coords: {coords} color: {color}')
-                time.sleep(2)
-
                 # Check that the user is on the agent selection screen
-                ### SEGUIR ###
-                
-                # Pick agent
-                if list(pyautogui.pixel(*coords)) == color:
-                    print('Agent found!')
-                    pyautogui.click(*coords)
 
-                    # Click confirmation button
-                    conf_btn = self.agents_data["CONFIRMATION_BUTTON"][0], self.agents_data["CONFIRMATION_BUTTON"][1]
-                    conf_btn_color = self.agents_data["CONFIRMATION_BUTTON"][2]
+                crd = self.agents_data["CONFIRMATION_BUTTON"][1]
+                for x in crd:
+                    color = ImageGrab.grab().load()[x[0], x[1]]
+                    # print(color, x[2], found, len(crd))
 
-                    if list(pyautogui.pixel(*conf_btn)) == conf_btn_color:
-                        pyautogui.click(*conf_btn)
+                    if self.relative_error(list(color), x[2], 2): found += 1
+                    else: break
+
+                if found == len(crd):
+                    coords = self.agents_data[self.agentName][0], self.agents_data[self.agentName][1]
+                    agent_color = self.agents_data[self.agentName][2]
+
+                    print(f'Searching: {self.agentName} - coords: {coords} color: {agent_color}')
+                    
+                    # Pick agent
+                    # print(list(ImageGrab.grab().load()[coords[0], coords[1]]), agent_color)
+                    if self.relative_error(list(ImageGrab.grab().load()[coords[0], coords[1]]), agent_color, 30):
+                        print('Agent found!')
+                        pyautogui.click(*coords)
+
+                        # Click confirmation button
+                        conf_btn = self.agents_data["CONFIRMATION_BUTTON"][0]
+                        pyautogui.moveTo(conf_btn[0], conf_btn[1], duration=0.1)
+                        pyautogui.moveTo(conf_btn[0], conf_btn[1] - 100, duration=0.2)
+                        pyautogui.click(*conf_btn, clicks=2, duration=0.2)
                         print('Confirmation Button clicked')
 
             elif self.activity and first:
                 time.sleep(2)
                 self.icon.notify(message=self.data["DataLack"], title=self.data["Warning"])
                 first = False
-            else:
-                time.sleep(1)
+            else: pass
+
+            time.sleep(0.5)
 
     def start(self) -> None:
         """Inicia el Instalocker"""
@@ -192,6 +265,7 @@ class Program:
             ),
             Item(self.data["Agents"], Menu(*[self.createItem(agent, True) for agent in self.all_agents])),
             Item(self.data["Add"], Menu(*[self.createItem(agent) for agent in self.all_agents])),
+            Item(self.data["Reset"], lambda: self.clear()),
             Item(self.data["Exit"], lambda: self.close())
         )
 

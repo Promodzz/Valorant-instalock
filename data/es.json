@@ -14,5 +14,6 @@
     "Instructions": "Instrucciones",
     "InstructionsText": "Haz click sobre el siguiente agente: ",
     "DataLack": "Para que el programa funcione debes haber configurado el botón de confirmación y al menos un agente.",
-    "Warning": "Advertencia"
+    "Warning": "Advertencia",
+    "Reset": "Restablecer"
 }

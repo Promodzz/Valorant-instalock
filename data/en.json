@@ -1,0 +1,18 @@
+{
+    "IconError": "Failed to open the icon image",
+    "LangError": "The existing languages are 'en' and 'es'\nYou can contribute to add more on Github",
+    "ProgamError": "Failed to start the program",
+    "Status":"Status",
+    "Enable":"Enable",
+    "Disable":"Disable",
+    "Agents":"Agents",
+    "Exit":"Exit",
+    "Notification":"Agent picked",
+    "Add":"Add Agent",
+    "AgentAdded": "Agent added",
+    "AgentAddedText": " has been added",
+    "Instructions": "Instructions",
+    "InstructionsText": "Click on the selected agents: ",
+    "DataLack": "For the program to work you must have configured the confirmation button and at least one agent.",
+    "Warning": "Warning"
+}

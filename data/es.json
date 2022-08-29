@@ -1,0 +1,18 @@
+{
+    "IconError": "Fallo al abrir la imagen del icono.",
+    "LangError": "Los lenguajes existentes son 'en' y 'es'\nPuedes contribuir a añadir más en Github.",
+    "ProgamError": "Error al iniciar el programa.",
+    "Status":"Estado",
+    "Enable":"Activo",
+    "Disable":"Inactivo",
+    "Agents":"Agentes",
+    "Exit":"Salir",
+    "Notification":"Agente escogido",
+    "Add":"Agregar agente",
+    "AgentAdded": "Agente agregado",
+    "AgentAddedText": " ha sido agregado",
+    "Instructions": "Instrucciones",
+    "InstructionsText": "Haz click sobre el siguiente agente: ",
+    "DataLack": "Para que el programa funcione debes haber configurado el botón de confirmación y al menos un agente.",
+    "Warning": "Advertencia"
+}

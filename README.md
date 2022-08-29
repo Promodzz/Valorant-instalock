@@ -1,45 +1,37 @@
-# How to use
-Simply execute the .exe in Program.
+# Valorant Instalocker
+Program to be the first to choose an agent in Valorant by manually and easily adding the position of the agents to obtain a simple and self-configuring program as a result.
 
-![image](https://user-images.githubusercontent.com/57575090/114625507-a453d000-9cb2-11eb-9421-3dbb9402d8f0.png)
-![image](https://user-images.githubusercontent.com/57575090/114625557-b6ce0980-9cb2-11eb-9a15-f458f9ecb728.png)
+<div align="center">
+<img src="data/icon_enable.ico" width="300" /><br><br>
+<img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/bing-rewards?style=flat-square&label=Python&logo=python&logoColor=yellow">
+<a href="https://pypi.org/project/bing-rewards/"> <img alt="PyPi" src="https://img.shields.io/pypi/v/bing-rewards?label=PyPI&style=flat-square&logo=pypi&logoColor=yellow"></a>
+<img alt="PyPI - License" src="https://img.shields.io/pypi/l/bing-rewards?style=flat-square&label=License&color=blueviolet">
+</div><br>
 
-If you think is a virus or simply you want to edit the script go to the Program carpet and with Autoit downloaded (https://www.autoitscript.com/site/), right click and "edit script" or go to the AutoIt carpet and run the compiler.
+# Configuration ⚙️
+To configure there are 3 options:
 
-![image](https://user-images.githubusercontent.com/57575090/114629199-72456c80-9cb8-11eb-963a-4122062f1af1.png)
+**ENABLE/DISABLE**
+- Select the agent from the list of `Add agent`.<br>
+    [![IMAGE ALT TEXT HERE](img/5.png)](img/5.png)
+    [![IMAGE ALT TEXT HERE](img/6.png)](img/6.png)
 
-![image](https://user-images.githubusercontent.com/57575090/114629297-a28d0b00-9cb8-11eb-90ba-d42844b5808d.png)
+**ADD AGENT**
+- Select the agent from the list of `Add agent`.<br>
+    [![IMAGE ALT TEXT HERE](img/1.png)](img/1.png)
 
+- Click on the selected Agent in the game to save its coordinates and colors.<br>
+    [![IMAGE ALT TEXT HERE](img/2.png)](img/2.png)<br>
+    [![IMAGE ALT TEXT HERE](img/3.png)](img/3.png)
 
-If the program don't work for you, probably we dont have the same screen resolution.
-I have 1920x1080.
+**PICK AGENT**
+- Select the agent from the list of `Agents`.<br>
+    [![IMAGE ALT TEXT HERE](img/4.png)](img/4.png)
+<br><br>
 
-So, if you want to configure it, edit the script like this:
+# How to use 📝
+You must configure the agent before you can use it, to do this follow the configuration section, after configuring it you must select it and the program will detect the agent selection screen to make the instalock.
+<br><br>
 
-![image](https://user-images.githubusercontent.com/57575090/114625720-fbf23b80-9cb2-11eb-9fc1-eca5c795642b.png)
-
-![image](https://user-images.githubusercontent.com/57575090/114629397-ca7c6e80-9cb8-11eb-837e-caa1f937b879.png)
-
-See the function for Jett for example.
-
-![image](https://user-images.githubusercontent.com/57575090/114631457-e71aa580-9cbc-11eb-92f8-ddca1fc631da.png)
-
-These coordinates and colors can be taken as follows:
-
-![image](https://user-images.githubusercontent.com/57575090/114630458-f1d43b00-9cba-11eb-89b3-9ea1a4dabe8c.png)
-
-Put Valorant in borderless and with the Finder Tool collects the information from the points marked in red in the picture above.
-
-![image](https://user-images.githubusercontent.com/57575090/114630616-4bd50080-9cbb-11eb-8673-8319b18481f1.png)
-
-Put this coords in the ColorGet.au3 inside the Program folder and execute:
-
-![image](https://user-images.githubusercontent.com/57575090/114631014-17157900-9cbc-11eb-906a-3f94871c74ef.png)
-
-![image](https://user-images.githubusercontent.com/57575090/114631046-2a284900-9cbc-11eb-9b56-b34360621483.png)
-
-![image](https://user-images.githubusercontent.com/57575090/114631072-357b7480-9cbc-11eb-9b52-051c75bf31aa.png)
-
-Let the program executing while you stay in champ selection for capture the color and replace him in the function of the champ.
-
-Once everything is configured, enjoy!
+# Supported languages 🌍
+At the moment the supported languages are `'en'` and `'es'`. If you want to add a new language just copy the file inside `data` called `en.json` and modify the values to your language.

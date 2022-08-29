@@ -1,0 +1,42 @@
+{
+    "ALL": [
+        "CONFIRMATION_BUTTON",
+        "Brimstone",
+        "Phoenix",
+        "Sage",
+        "Sova",
+        "Viper",
+        "Cypher",
+        "Reyna",
+        "Killjoy",
+        "Breach",
+        "Omen",
+        "Jett",
+        "Raze",
+        "Skye",
+        "Yoru",
+        "Astra",
+        "Kay/O",
+        "Chamber",
+        "Neon",
+        "Fade"
+    ],
+    "CONFIRMATION_BUTTON": [
+        961,
+        449,
+        [
+            26,
+            27,
+            38
+        ]
+    ],
+    "Jett": [
+        1772,
+        400,
+        [
+            151,
+            101,
+            200
+        ]
+    ]
+}
